@@ -1,6 +1,6 @@
 export interface Invoice {
     id?: string,
-    number?: number,
+    number?: string,
     status?: string,
     customer?: string,
     createdDate?: string,

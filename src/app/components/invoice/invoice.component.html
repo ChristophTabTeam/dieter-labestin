@@ -1,4 +1,4 @@
-<button mat-button>Rechnung Hinzufügen</button>
+<button mat-button (click)="createInvoice()">Rechnung Hinzufügen</button>
 <div class="container">
     <table mat-table [dataSource]="invoices" class="mat-elevation-z8" style="width: 100%;">
         <ng-container matColumnDef="status">

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, updateDoc } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Customer } from '../interfaces/customer';
 import { Article, Invoice, Position } from '../interfaces/invoice';
@@ -20,13 +20,13 @@ export class DataService {
   }
 
   getInvoiceById(id: string): Observable<Invoice> {
-    const noteDocRef = doc(this.fireStore, `invoices/${id}`)
-    return docData(noteDocRef, { idField: 'id' }) as Observable<Invoice>
+    const invoiceDocRef = doc(this.fireStore, `invoices/${id}`)
+    return docData(invoiceDocRef, { idField: 'id' }) as Observable<Invoice>
   }
 
-  addInvoice(invoice: Invoice) {
+  addInvoice(invoice: Invoice, id: string) {
     const invoicesRef = collection(this.fireStore, 'invoices')
-    return addDoc(invoicesRef, invoice)
+    return setDoc(doc(invoicesRef, id), invoice)
   }
 
   deleteInvoice(invoice: Invoice) {

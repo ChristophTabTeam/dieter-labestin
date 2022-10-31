@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'invoice/id', component: InvoiceViewComponent
   },
   {
-    path: 'invoice/new', component: InvoiceCreateComponent
+    path: 'invoice/new/:id', component: InvoiceCreateComponent
   }
 ];
 
