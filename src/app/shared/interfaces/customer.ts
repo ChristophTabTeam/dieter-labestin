@@ -1,0 +1,15 @@
+export interface Customer {
+    id?: string,
+    firstName?: string,
+    lastName?: string,
+    companyName?: string,
+    type?: string,
+    formOfAddress?: string,
+    title?: string,
+    customerNumber?: number,
+    streetName?: string,
+    streetNumber?: string,
+    zipCode?: string,
+    cityName?: string,
+    country?: string,
+}

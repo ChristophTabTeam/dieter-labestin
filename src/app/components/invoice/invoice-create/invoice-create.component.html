@@ -1,0 +1,129 @@
+<mat-card class="container-small">
+    <form [formGroup]="invoiceForm" class="invoice-form">
+        <div class="form-column-wrapper" style="grid-area: one;">
+            <mat-form-field class="input-wrapper" appearance="fill">
+                <mat-label>Kunde auswählen</mat-label>
+                <input matInput placeholder="Kunde" type="text" aria-label="Kunde" formControlName="customer"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of customers" [value]="option">
+                        <div *ngIf="option.type === 'person'">
+                            {{option.firstName}} {{option.lastName}}
+                        </div>
+                        <div *ngIf="option.type === 'company'">
+                            {{option.companyName}}
+                        </div>
+                    </mat-option>
+                    <mat-option>
+                        Neuen Kunden Anlegen
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Anschrift</mat-label>
+                <textarea matInput></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Land</mat-label>
+                <mat-select formControlName="country">
+
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-column-wrapper flex-row" style="grid-area: two;">
+            <div class="form-column-wrapper">
+                <mat-form-field appearance="fill">
+                    <mat-label>Betreff</mat-label>
+                    <input type="text" matInput formControlName="subject">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Rechnungsdatum</mat-label>
+                    <input matInput [matDatepicker]="invoiceDate" formControlName="invoiceDate">
+                    <mat-hint></mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="invoiceDate"></mat-datepicker-toggle>
+                    <mat-datepicker #invoiceDate></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Lieferdatum</mat-label>
+                    <input matInput [matDatepicker]="shipmentDate" formControlName="shipmentDate">
+                    <mat-hint></mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="shipmentDate"></mat-datepicker-toggle>
+                    <mat-datepicker #shipmentDate></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Rechnungsnummer</mat-label>
+                    <input type="text" matInput formControlName="invoiceNumber">
+                </mat-form-field>
+            </div>
+            <div class="form-column-wrapper">
+            </div>
+        </div>
+        <form [formGroup]="positionForm" style="width: 100%; grid-area: three;">
+            <table style="width: 100%;">
+                <tr>
+                    <th class="position-table-header">Pos.</th>
+                    <th class="position-table-header">Bezeichnung</th>
+                    <th class="position-table-header">Menge</th>
+                    <th class="position-table-header">Einzelpreis</th>
+                    <th class="position-table-header">Rabatt</th>
+                    <th class="position-table-header">Betrag</th>
+                </tr>
+                <tr *ngFor="let p of positions">
+                    <td class="position-table-data"> {{p.position}} </td>
+                    <td class="position-table-data"> {{p.name}} </td>
+                    <td class="position-table-data"> {{p.amount}} {{p.unit}}</td>
+                    <td class="position-table-data"> {{p.price | currency}} </td>
+                    <td class="position-table-data"> {{p.discount}} {{p.discountUnit}} </td>
+                </tr>
+                <tr>
+                    <td class="position-table-data" style="width: min-content;">
+                        {{positionCount}}
+                    </td>
+                    <td class="position-table-data">
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Bezeichnung</mat-label>
+                            <input type="text" matInput formControlName="name">
+                        </mat-form-field>
+                    </td>
+                    <td class="position-table-data flex">
+                        <mat-form-field appearance="fill" style="width: 85px;">
+                            <mat-label>Menge</mat-label>
+                            <input type="number" step=".25" min="0" matInput formControlName="amount">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 70px;">
+                            <mat-label>Einheit</mat-label>
+                            <mat-select formControlName="unit">
+                                <mat-option value="Stk.">Stk.</mat-option>
+                                <mat-option value="Std.">Std.</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td class="position-table-data">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Preis</mat-label>
+                            <input type="number" step=".01" min="0" matInput formControlName="name">
+                        </mat-form-field>
+                    </td>
+                    <td class="position-table-data flex">
+                        <mat-form-field appearance="fill" style="width: 85px;">
+                            <mat-label>Rabatt</mat-label>
+                            <input type="number" step=".01" min="0" matInput formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 70px;">
+                            <mat-label>Einheit</mat-label>
+                            <mat-select formControlName="discountUnit">
+                                <mat-option value="%">%</mat-option>
+                                <mat-option value="EUR">EUR</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td class="position-table-data">
+                        <button mat-button type="submit" style="height: 100%;">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </form>
+</mat-card>

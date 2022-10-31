@@ -1,0 +1,42 @@
+.invoice-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'one two' 'three three';
+    gap: 50px;
+}
+
+.form-column-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.form-column-wrapper.flex-row {
+    flex-direction: row;
+    gap: 30px;
+}
+
+input, textarea {
+    color: black;
+}
+
+textarea {
+    height: 100px;
+}
+
+.position-table-header {
+    text-align: left;
+}
+
+.position-table-data {
+    width: 100%;
+}
+
+.position-table-data.flex {
+    display: flex;
+}
+
+.position-table-header, .position-table-data{
+    padding: 0 10px;
+}

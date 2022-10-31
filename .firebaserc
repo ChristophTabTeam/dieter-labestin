@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dieter-labestin": {
+      "hosting": {
+        "dieter-labestin": [
+          "dieter-labestin"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dieter-labestin"
+  }
+}
